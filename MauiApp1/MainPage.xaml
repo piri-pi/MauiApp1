@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.MainPage"
+             x:DataType="local:MainPage">
+
+    <Grid RowDefinitions="*,Auto,*">
+        <Label Text="Hallo" FontSize="Large" HorizontalTextAlignment="Center"/>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Data}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:Item">
+                    <Grid ColumnDefinitions="*,*,*">
+                        <Label Text="{Binding Name}"/>
+                        <CollectionView Grid.Column="1"
+                                        ItemsSource="{Binding SubItems}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="local:SubItem">
+                                    <Label Text="{Binding Comment}"/>
+                                </DataTemplate>   
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button Grid.Column="2" 
+                                Text="+"
+                                Clicked="Add_SubItem"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
+        <Button Grid.Row="2"
+                Text="+"
+                FontSize="Large"
+                Clicked="Add_Item"/>
+
+    </Grid>
+ 
+</ContentPage>
